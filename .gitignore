@@ -1,0 +1,15 @@
+
+**/references/**
+**/notebooks/.ipynb_checkpoints/**
+**/models/uncased_L-12_H-768_A-12/**
+
+**/*.zip
+**/*.csv
+**/*.json
+**/*.model
+**/*.pyc
+**/*.txt
+**/*.sublime-project
+**/*.sublime-workspace
+
+**/__init__.py
