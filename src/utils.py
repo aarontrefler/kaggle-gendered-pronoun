@@ -1,9 +1,13 @@
 """Utility support"""
 import datetime
+import sys
 
 import pandas as pd
 
 project_path = "/Users/aarontrefler_temp2/Documents/My_Documents/Kaggle/kaggle-gendered-pronoun/"
+
+data_interim_dir = project_path + "data/interim/"
+
 
 def cols_to_front(df, front_cols):
     """Moves selected coumns to front of DataFrame"""

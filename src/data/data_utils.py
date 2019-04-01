@@ -1,3 +1,5 @@
+"""Utility functions for data processing"""
+
 def compute_offset_no_spaces(text, offset):
     """Taken from public Kaggle kernal: Taming the BERT - a baseline"""
     count = 0
