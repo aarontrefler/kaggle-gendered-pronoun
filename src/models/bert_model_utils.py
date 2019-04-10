@@ -6,10 +6,32 @@ import src.data.data_utils as data_utils
 import src.utils as utils
 
 
+def create_bert_extract_features_cmd(df, dataset_name):
+    """Create bert extract fetures command for specified dataset"""
+    extract_features_cmd = "python {extract_features_script} \
+      --input_file={input_file} \
+      --output_file={output_file} \
+      --vocab_file={vocab_file} \
+      --bert_config_file={bert_config_file} \
+      --init_checkpoint={init_checkpoint} \
+      --layers=-1 \
+      --max_seq_length=256 \
+      --batch_size=8".format(
+        extract_features_script = utils.bert_dir + "extract_features.py",
+        input_file = utils.data_interim_dir + "bert_input_{dataset}.txt".format(dataset=dataset_name),
+        output_file = utils.data_interim_dir + "bert_output_{dataset}.json".format(dataset=dataset_name),
+        vocab_file = utils.models_dir + "uncased_L-12_H-768_A-12/vocab.txt",
+        bert_config_file = utils.models_dir + "uncased_L-12_H-768_A-12/bert_config.json",
+        init_checkpoint = utils.models_dir + "uncased_L-12_H-768_A-12/bert_model.ckpt"    
+    )
+
+    return extract_features_cmd
+
+
 def read_in_bert_features(dataset_name):
     """Taken from public Kaggle kernal: Taming the BERT - a baseline"""
     bert_output = pd.read_json(
-        utils.data_interim_dir + "output_{dataset}.json".format(dataset=dataset_name), lines = True)
+        utils.data_interim_dir + "bert_output_{dataset}.json".format(dataset=dataset_name), lines = True)
     
     return bert_output
     
@@ -83,7 +105,7 @@ def create_bert_word_embedding_df(df, bert_output, dataset_name):
 def parse_json(embeddings):
     '''
     Taken from public Kaggle kernal: Taming the BERT - a baseline
-    
+
     Parses the embeddigns given by BERT, and suitably formats them to be passed to the MLP model
 
     Input: embeddings, a DataFrame containing contextual embeddings from BERT, as well as the labels for the classification problem

@@ -4,9 +4,14 @@ import sys
 
 import pandas as pd
 
-project_path = "/Users/aarontrefler_temp2/Documents/My_Documents/Kaggle/kaggle-gendered-pronoun/"
 
-data_interim_dir = project_path + "data/interim/"
+proj_path = "/Users/aarontrefler_temp2/Documents/My_Documents/Kaggle/kaggle-gendered-pronoun/"
+
+bert_dir = proj_path + "bert/"
+data_raw_dir = proj_path + "data/raw/"
+data_interim_dir = proj_path + "data/interim/"
+data_clean_dir = proj_path + "data/clean/"
+models_dir = proj_path + "models/"
 
 
 def cols_to_front(df, front_cols):
