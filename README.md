@@ -1,7 +1,7 @@
-Kaggle's Gendered Pronoun Resolution (Pair pronouns to their correct entities)
+Kaggle's Gendered Pronoun Resolution Competition 
 ==============================
 Aaron Trefler  
-Project Duration: Part-time work from March 22nd to April 22nd
+Project Duration: Part-time work from March 22nd to April 10th
 
 **Note: This project has not been completed, and only produces a submission file for stage 1 of the competition**
 
@@ -11,7 +11,7 @@ Predictive modeling approach is heavily based on the public Kaggle kernel [Tamin
 
 Introduction
 ------------
-This project was created in order to compete in [Kaggle's Gendered Pronoun Resolution](https://www.kaggle.com/c/gendered-pronoun-resolution/overview) contest.
+This project was created in order to compete in [Kaggle's Gendered Pronoun Resolution (Pair pronouns to their correct entities)](https://www.kaggle.com/c/gendered-pronoun-resolution/overview) contest.
 
 Contest description:
 ```
@@ -26,10 +26,11 @@ In this two-stage competition, Kagglers are challenged to build pronoun resoluti
 
 Executing Project
 ------------
-In order to run the entire project (i.e., create all datasets and models):
-1. ensure this projects home directory is put on your `$PYTHONPATH`, by altering `PROJ_PATH` variable in `src:run.sh`
+In order to run the project:
+1. ensure this project's home directory is put on your `$PYTHONPATH`, by altering `PROJ_PATH` variable in `src:run.sh`
 2. alter the `proj_path` variable in `src:utils.py` to that of this project's directory on your machine
-3. execute notebooks in numerical order
+3. download the [BERT-Base, Uncased model](https://storage.googleapis.com/bert_models/2018_10_18/uncased_L-12_H-768_A-12.zip) and ensure it is locatable at `models/uncased_L-12_H-768_A-12`
+4. execute notebooks in numerical order (ensure `proj_path` variable at beginning of all notebooks is properly set)
 
 Project assumes you are running Python 3, and have all necessary packages.
 
@@ -55,8 +56,6 @@ Neural network modeling was performed using Keras with a TensorFlow back-end.
 
 Jupyter (iPython) Notebooks
 ------------
-Notebooks can only be executed after project has been run.
-
 Notebooks in this project are as follows:
 - `AT-0.1-data-processing`: Performs data processing, and creates interim and clean datasets
 - `AT-0.2-data-analysis`: Performs analysis on raw, interim, and clean datasets
@@ -65,7 +64,6 @@ Notebooks in this project are as follows:
 Project Organization
 ------------
     ├── README.md
-    │  
     ├── bert                           <- Google BERT repo copied from GitHub
     │ 
     ├── data
@@ -74,7 +72,7 @@ Project Organization
     │   └── raw                        <- Data files downloaded from GAP dataset and Kaggle
     │
     ├── models                          
-    │   ├── uncased_L-12_H-768_A-12    <- Pre-trained BERT model
+    │   ├── uncased_L-12_H-768_A-12    <- Pre-trained BERT model (must be downloaded)
     │   └── submissions                <- Kaggle submission file
     │
     ├── src
