@@ -28,15 +28,27 @@ def create_bert_extract_features_cmd(df, dataset_name):
     return extract_features_cmd
 
 
-def read_in_bert_features(dataset_name):
-    """Taken from public Kaggle kernal: Taming the BERT - a baseline"""
-    bert_output = pd.read_json(
-        utils.data_interim_dir + "bert_output_{dataset}.json".format(dataset=dataset_name), lines = True)
+def read_in_bert_features(dataset_name, chunksize=None):
+    """
+    Read in bert features in json format into pandas DataFrame
+    Un-enhanced version taken from public Kaggle kernal: Taming the BERT - a baseline
+    """
+    if chunksize is None:
+        # Entire dataset can be read into memory at once
+        return pd.read_json(
+            utils.data_interim_dir + "bert_output_{dataset}.json".format(dataset=dataset_name), lines=True)
+
+    # Dataset must be read an prcoessed in chunks
+    chunks = pd.read_json(utils.data_interim_dir + "bert_output_{dataset}.json".format(dataset=dataset_name),
+            lines=True, chunksize=chunksize)
+    bert_output = pd.DataFrame()
+    for chunk in chunks:
+        bert_output = bert_output.append(chunk, ignore_index=True)
     
     return bert_output
     
 
-def create_bert_word_embedding_df(df, bert_output, dataset_name):
+def create_bert_word_embedding_df(df, bert_output, dataset_name,  unlabled=True):
     """Taken from public Kaggle kernal: Taming the BERT - a baseline"""
     index = df.index
     columns = ["emb_A", "emb_B", "emb_P", "label"]
@@ -90,11 +102,15 @@ def create_bert_word_embedding_df(df, bert_output, dataset_name):
         emb_B /= cnt_B
 
         # Work out the label of the current piece of text
-        label = "Neither"
-        if (df.loc[i,"A-coref"] == True):
-            label = "A"
-        if (df.loc[i,"B-coref"] == True):
-            label = "B"
+        if unlabled:
+            # dataset does not contain labels
+            label=np.nan
+        else:
+            label = "Neither"
+            if (df.loc[i,"A-coref"] == True):
+                label = "A"
+            if (df.loc[i,"B-coref"] == True):
+                label = "B"
 
         # Put everything together in emb
         emb.iloc[i] = [emb_A, emb_B, emb_P, label]
