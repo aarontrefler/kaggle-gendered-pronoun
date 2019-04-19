@@ -1,9 +1,7 @@
 Kaggle's Gendered Pronoun Resolution Competition 
 ==============================
 Aaron Trefler  
-Project Duration: Part-time work from March 22nd to April 10th
-
-**Note: This project has not been completed, and only produces a submission file for stage 1 of the competition**
+Project Duration: Part-time work from March 22nd to April 18th
 
 References
 ------------
@@ -27,7 +25,7 @@ In this two-stage competition, Kagglers are challenged to build pronoun resoluti
 Executing Project
 ------------
 In order to run the project:
-1. ensure this project's home directory is put on your `$PYTHONPATH`, by altering `PROJ_PATH` variable in `src:run.sh`
+1. ensure this project's home directory is put on your `$PYTHONPATH`, by altering `PROJ_PATH` variable in `src:run_setup.sh`
 2. alter the `proj_path` variable in `src:utils.py` to that of this project's directory on your machine
 3. download the [BERT-Base, Uncased model](https://storage.googleapis.com/bert_models/2018_10_18/uncased_L-12_H-768_A-12.zip) and ensure it is locatable at `models/uncased_L-12_H-768_A-12`
 4. execute notebooks in numerical order (ensure `proj_path` variable at beginning of all notebooks is properly set)
@@ -37,9 +35,10 @@ Project assumes you are running Python 3, and have all necessary packages.
 Data Files
 ------------
 Data files used in this project were provided by Kaggle and Google's [GAP Coreference Dataset](https://github.com/google-research-datasets/gap-coreference). Specifically the following raw files are used:
-- `gap-test`: training dataset (competition stage 1)
-- `gap_validation`: validation dataset (competition stage 1)
-- `gap-development`: test dataset (competition stage 1)
+- `gap-test.tsv`: training dataset
+- `gap_validation.tsv`: validation dataset
+- `gap-development.tsv`: test dataset (competition stage 1)
+- `test_stage_2.tsv`: test dataset (competition stage 2)
 
 Features Used
 ------------
@@ -52,7 +51,7 @@ Each target was converted into a 768 dimensional feature vector. Thus in total 2
 
 Modeling
 ------------
-Neural network modeling was performed using Keras with a TensorFlow back-end.
+Modeling was performed using a feed-forward neural network architecture, implemented with Keras using a TensorFlow back-end.
 
 Jupyter (iPython) Notebooks
 ------------
