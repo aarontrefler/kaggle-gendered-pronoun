@@ -60,6 +60,13 @@ Notebooks in this project are as follows:
 - `AT-0.2-data-analysis`: Performs analysis on raw, interim, and clean datasets
 - `AT-0.3-modeling`: Perform machine learning modeling
 
+Results
+------------
+136th / 838 participants (top 17%)
+- CV Error: 0.5742 (std=0.0398) 
+- Stage 1 Test Error: 0.54648
+- Stage 2 Test Error: 0.55727
+
 Project Organization
 ------------
     ├── README.md
